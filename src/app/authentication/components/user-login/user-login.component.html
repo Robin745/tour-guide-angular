@@ -12,7 +12,7 @@
         type="email"
         name="email"
         [(ngModel)]="form.email"
-        id=""
+        id="1"
         class="w-full py-2 px-4 rounded-md border-2"
         placeholder="Your Email"
         #email="ngModel"
@@ -22,14 +22,15 @@
     <div *ngIf="email.invalid && (email.dirty || email.touched)">
       <p class="px-2 rounded-md mb-2 text-red-700">Email field must be valid</p>
     </div>
-    <div class="w-full mb-2">
+    <div class="w-full">
       <input
         type="password"
         name="password"
         [(ngModel)]="form.password"
-        id=""
+        id="2"
         class="w-full py-2 px-4 rounded-md"
         placeholder="Your Password"
+        autocomplete="given-password"
         #password="ngModel"
         required
       />
@@ -40,11 +41,14 @@
       </p>
     </div>
     <div class="w-11/12 mx-auto my-1">
+      <p class="text-center text-lg text-lime-600">
+        <ng-container *ngIf="isLoading()">Loading...</ng-container>
+      </p>
       <input
         [disabled]="myForm.form.invalid"
         type="submit"
         value="Login"
-        class="bg-green-800 w-full hover:bg-green-700 text-white py-2 rounded-md"
+        class="bg-green-800 w-full hover:bg-green-700 text-white py-2 rounded-md mt-2"
       />
     </div>
     <p>

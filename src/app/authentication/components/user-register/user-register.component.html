@@ -12,7 +12,7 @@
         type="text"
         name="name"
         [(ngModel)]="form.name"
-        id=""
+        id="1"
         class="w-full py-2 px-4 rounded-md border-2"
         placeholder="User Name"
         #name="ngModel"
@@ -27,7 +27,7 @@
         type="email"
         name="email"
         [(ngModel)]="form.email"
-        id=""
+        id="2"
         class="w-full py-2 px-4 rounded-md border-2"
         placeholder="Your Email"
         #email="ngModel"
@@ -42,16 +42,17 @@
         type="password"
         name="password"
         [(ngModel)]="form.password"
-        id=""
+        id="3"
         class="w-full py-2 px-4 rounded-md"
         placeholder="Your Password"
+        autocomplete="give-password"
         #password="ngModel"
         required
       />
     </div>
     <div *ngIf="password.invalid && (password.dirty || password.touched)">
       <p class="px-2 rounded-md mb-2 text-red-700">
-        Password field must be valid
+        password field must be valid
       </p>
     </div>
     <div class="w-full mb-2">
@@ -59,12 +60,18 @@
         type="password"
         name="confirmPassword"
         [(ngModel)]="form.confirmPassword"
-        id=""
+        id="4"
         class="w-full py-2 px-4 rounded-md"
         placeholder="Confirm Password"
+        autocomplete="given-name"
         #confirmPassword="ngModel"
         required
       />
+    </div>
+    <div *ngIf="isPassMatched()">
+      <p class="px-2 rounded-md mb-2 text-red-700">
+        Both password didn't match
+      </p>
     </div>
     <div
       *ngIf="
@@ -73,10 +80,13 @@
       "
     >
       <p class="px-2 rounded-md mb-2 text-red-700">
-        confirmPassword field must be valid
+        password field must be valid
       </p>
     </div>
     <div class="w-11/12 mx-auto my-1">
+      <p class="text-center text-lg text-lime-600">
+        <ng-container *ngIf="isLoading()">Loading...</ng-container>
+      </p>
       <input
         [disabled]="myForm.form.invalid"
         type="submit"

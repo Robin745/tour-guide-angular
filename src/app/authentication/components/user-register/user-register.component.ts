@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegisterForm } from '../../register-form';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-user-register',
@@ -9,7 +10,7 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
   styleUrls: ['./user-register.component.css'],
 })
 export class UserRegisterComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth:AuthService) {}
   form: RegisterForm = {
     name: '',
     email: '',
@@ -20,21 +21,12 @@ export class UserRegisterComponent {
     this.router.navigateByUrl('/login');
   }
   onSubmit() {
-    if (this.form.password !== this.form.confirmPassword) {
-      return;
-    }
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, this.form.email, this.form.password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+    this.auth.register(this.form)
+  }
+  isPassMatched() {
+    return this.auth.isPassMatched;
+  }
+  isLoading() {
+    return this.auth.isLoading;
   }
 }
