@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { UserLoginComponent } from './authentication/components/user-login/user-login.component';
 import { UserRegisterComponent } from './authentication/components/user-register/user-register.component';
+import { GuardGuard } from './authentication/guard.guard';
 import { CartComponent } from './cart/cart.component';
-import { FooterComponent } from './footer/footer.component';
 import { ToursComponent } from './tours/tours.component';
 
 const routes: Routes = [
@@ -15,6 +15,7 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+    canActivate: [GuardGuard],
   },
   {
     path: 'login',
@@ -31,16 +32,6 @@ const routes: Routes = [
       import('../app/authentication/authentication.module').then(
         (m) => m.AuthenticationModule
       ),
-    // children: [
-    //   {
-    //     path: 'user-login',
-    //     component: UserLoginComponent
-    //   },
-    //   {
-    //     path: 'user-register',
-    //     component: UserRegisterComponent
-    //   }
-    // ]
   },
 ];
 

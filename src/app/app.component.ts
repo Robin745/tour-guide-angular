@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { initializeApp } from 'firebase/app';
+import { AuthService } from './authentication/auth.service';
 import { firebaseConfig } from './firebase.config';
 @Component({
   selector: 'app-root',
@@ -7,11 +8,11 @@ import { firebaseConfig } from './firebase.config';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  
+
   ngOnInit(): void {
     initializeApp(firebaseConfig);
   }
   title = 'book-shop';
-  handleSearch = (inputText: string) => {
-    console.log(inputText);
-  };
+  
 }

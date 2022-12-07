@@ -23,10 +23,24 @@
       class="py-3 px-3 font-semibold hover:bg-emerald-800 hover:text-white"
       >Cart</a
     >
-    <a
-      routerLink="/login"
-      class="py-3 px-3 font-semibold hover:bg-emerald-800 hover:text-white"
-      >Login</a
-    >
+    <ng-container *ngIf="!isAuthenticated()">
+      <a
+        routerLink="/login"
+        class="py-3 px-3 font-semibold hover:bg-emerald-800 hover:text-white"
+        >Login</a
+      >
+      <a
+        routerLink="/register"
+        class="py-3 px-3 font-semibold hover:bg-emerald-800 hover:text-white"
+        >Sign In</a
+      >
+    </ng-container>
+    <ng-container *ngIf="isAuthenticated()">
+      <a
+        (click)="SignOut()"
+        class="py-3 px-3 cursor-pointer font-semibold hover:bg-emerald-800 hover:text-white"
+        >Log Out</a
+      >
+    </ng-container>
   </div>
 </div>
