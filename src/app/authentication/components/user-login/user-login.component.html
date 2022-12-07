@@ -1,0 +1,102 @@
+<div class="w-10/12 mx-auto">
+  <form
+    (ngSubmit)="onSubmit()"
+    #myForm="ngForm"
+    class="flex flex-col items-center md:w-96 mx-auto"
+  >
+    <div class="text-2xl font-semibold my-4 text-green-700">
+      <h1>Please Login</h1>
+    </div>
+    <div class="w-full my-2">
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="form.email"
+        id=""
+        class="w-full py-2 px-4 rounded-md border-2"
+        placeholder="Your Email"
+        #email="ngModel"
+        required
+      />
+    </div>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+      <p class="px-2 rounded-md mb-2 text-red-700">Email field must be valid</p>
+    </div>
+    <div class="w-full mb-2">
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="form.password"
+        id=""
+        class="w-full py-2 px-4 rounded-md"
+        placeholder="Your Password"
+        #password="ngModel"
+        required
+      />
+    </div>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)">
+      <p class="px-2 rounded-md mb-2 text-red-700">
+        Password field must be valid
+      </p>
+    </div>
+    <div class="w-11/12 mx-auto my-1">
+      <input
+        [disabled]="myForm.form.invalid"
+        type="submit"
+        value="Login"
+        class="bg-green-800 w-full hover:bg-green-700 text-white py-2 rounded-md"
+      />
+    </div>
+    <p>
+      New to this Service?
+      <a
+        (click)="toRegister()"
+        class="text-blue-500 cursor-pointer hover:text-blue-700"
+        >Register</a
+      >
+    </p>
+  </form>
+
+  <div class="flex items-center gap-x-2 justify-center my-4">
+    <div class="bg-gray-500 h-[2px] w-32"></div>
+    <p>or</p>
+    <div class="bg-gray-500 h-[2px] w-32"></div>
+  </div>
+
+  <div class="w-80 mx-auto my-4">
+    <div>
+      <button
+        onClick="{handleGoogleSignIn}"
+        class="flex mx-auto items-center justify-center bg-indigo-600 hover:bg-indigo-800 text-white p-2 w-80 my-2 rounded-md"
+      >
+        <img
+          class="w-6 mx-2"
+          src="https://i.ibb.co/VSWjCtT/google.png"
+          alt=""
+        />
+        Sign in with Google
+      </button>
+      <button
+        class="flex mx-auto items-center justify-center bg-indigo-600 hover:bg-indigo-800 text-white p-2 w-80 my-2 rounded-md"
+        routerLink="/authentication/user-register"
+      >
+        <img
+          class="w-6 mx-2"
+          src="https://i.ibb.co/FVrCJzk/Facebook.png"
+          alt=""
+        />
+        Sign in with Facebook
+      </button>
+      <button
+        class="flex mx-auto items-center justify-center bg-indigo-600 hover:bg-indigo-800 text-white p-2 w-80 my-2 rounded-md"
+      >
+        <img
+          class="w-6 mx-2"
+          src="https://i.ibb.co/ZBRTJTH/github.png"
+          alt=""
+        />
+        Sign in with Github
+      </button>
+    </div>
+  </div>
+</div>
