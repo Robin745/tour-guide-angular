@@ -8,11 +8,20 @@ import { firebaseConfig } from './firebase.config';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  
-
+  constructor(private auth: AuthService) {}
+  jsonData: any;
+  data: any;
   ngOnInit(): void {
     initializeApp(firebaseConfig);
+    this.jsonData = localStorage.getItem('user');
+    this.data = JSON.parse(this.jsonData);
+    console.log(this.data);
+    if (this.data) {
+      this.auth.isLoggedIn = true;
+      this.auth.setUser(this.data);
+    } else {
+      this.auth.isLoggedIn = false;
+    }
   }
   title = 'book-shop';
-  
 }

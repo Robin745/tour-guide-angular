@@ -67,11 +67,21 @@ export class AuthService {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
+        localStorage.removeItem('user');
         this.isLoggedIn = false;
         // Sign-out successful.
       })
       .catch((error) => {
         // An error happened.
       });
+  }
+
+  //setting user data
+  userdata: any;
+  setUser(user: any) {
+    this.userdata = user;
+  }
+  getUser() {
+    return this.userdata;
   }
 }
