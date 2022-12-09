@@ -4,13 +4,7 @@ import { LoginForm } from '../../login-form';
 import { AuthService } from '../../auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
-import {
-  getAuth,
-  setPersistence,
-  signInWithRedirect,
-  inMemoryPersistence,
-  GoogleAuthProvider,
-} from 'firebase/auth';
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -45,7 +39,7 @@ export class UserLoginComponent {
         this.auth.isLoggedIn = true;
         this.router.navigate(['']);
       })
-      .catch((err) => {
+      .catch(() => {
         alert('not-success');
       });
   };

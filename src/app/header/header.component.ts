@@ -9,10 +9,14 @@ import { getAuth } from 'firebase/auth';
 })
 export class HeaderComponent implements OnInit {
   constructor(private authentication: AuthService) {}
+
+  //created onOnInit to call getUserData funtion when application load.
   ngOnInit(): void {
     this.getUserData();
   }
+  //a variable to store user information
   userData: any;
+
   getUserData() {
     this.userData = this.authentication.getUser();
   }

@@ -13,6 +13,8 @@ import { RegisterForm } from './register-form';
   providedIn: 'root',
 })
 export class AuthService {
+
+  //decleare router using dependency injection
   constructor(private router: Router) {}
 
   isLoading: boolean = false;
@@ -46,7 +48,6 @@ export class AuthService {
       this.isLoading = false;
       return;
     }
-
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
@@ -62,7 +63,7 @@ export class AuthService {
       .finally(() => (this.isLoading = false));
   }
 
-  //log out
+  //log out function
   signOut() {
     const auth = getAuth();
     signOut(auth)
@@ -76,11 +77,12 @@ export class AuthService {
       });
   }
 
-  //setting user data
+  //receive user data from login.ts and store it on a variable.
   userdata: any;
   setUser(user: any) {
     this.userdata = user;
   }
+  //provide userData if any component needed.
   getUser() {
     return this.userdata;
   }

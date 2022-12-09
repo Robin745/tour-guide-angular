@@ -6,7 +6,10 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class GuardGuard implements CanActivate {
-  constructor(private auth: AuthService) {}
+  //dependency injection
+  constructor(private auth: AuthService) { }
+
+  //private route will open Only if isLoggedIn is true.
   canActivate() {
     return this.auth.isLoggedIn;
   }
