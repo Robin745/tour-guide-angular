@@ -27,6 +27,7 @@ export class AuthService {
     signInWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         const user = userCredential.user;
+        localStorage.setItem('user', JSON.stringify(user));
         console.log(user);
         this.isLoggedIn = true;
         this.router.navigate(['']);
@@ -52,6 +53,7 @@ export class AuthService {
       .then((userCredential) => {
         this.isLoggedIn = true;
         const user = userCredential.user;
+        localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['']);
       })
       .catch((error) => {

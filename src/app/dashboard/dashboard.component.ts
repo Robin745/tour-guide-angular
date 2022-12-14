@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../services/api-service.service';
 import { Tour } from '../tours/tour.data';
+import { ToursData } from './tours-data';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,13 +15,32 @@ export class DashboardComponent implements OnInit {
   }
 
   users: any[] = [];
-
   getUserList() {
     this.apiService.getUsers('').subscribe(
       (data) => {
         if ((data.code = '200')) {
           this.users = data.userData;
           console.log(this.users);
+        }
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  tours: ToursData = {
+    title: '',
+    image: '',
+    price: '',
+    description: '',
+  };
+  setToursData() {
+    console.log(this.tours);
+    this.apiService.setTours(this.tours).subscribe(
+      (data) => {
+        if ((data.code = '200')) {
+          console.log(data);
         }
       },
       (error: any) => {
