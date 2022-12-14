@@ -13,7 +13,6 @@ import { RegisterForm } from './register-form';
   providedIn: 'root',
 })
 export class AuthService {
-
   //decleare router using dependency injection
   constructor(private router: Router) {}
 

@@ -8,12 +8,20 @@ import { ToursModule } from './tours/tours.module';
 import { CartComponent } from './cart/cart.component';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { firebaseConfig } from './firebase.config';
-import { PERSISTENCE } from '@angular/fire/compat/auth';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, CartComponent],
-  imports: [BrowserModule, AppRoutingModule, ToursModule, AuthenticationModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ToursModule,
+    AuthenticationModule,
+    DashboardModule,
+    HttpClientModule,
+  ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: firebaseConfig }],
   bootstrap: [AppComponent],
 })

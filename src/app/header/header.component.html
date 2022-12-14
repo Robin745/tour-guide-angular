@@ -37,6 +37,11 @@
     </ng-container>
     <ng-container *ngIf="isAuthenticated()">
       <a
+        routerLink="/admin-dashboard"
+        class="py-3 px-3 font-semibold hover:bg-emerald-800 hover:text-white"
+        >Dashboard</a
+      >
+      <a
         class="py-3 px-3 cursor-pointer font-semibold font-serif text-amber-600 hover:bg-emerald-800 hover:text-rose-500"
         >{{ userData?.displayName }}</a
       >

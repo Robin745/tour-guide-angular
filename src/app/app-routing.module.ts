@@ -5,6 +5,7 @@ import { UserLoginComponent } from './authentication/components/user-login/user-
 import { UserRegisterComponent } from './authentication/components/user-register/user-register.component';
 import { GuardGuard } from './authentication/guard.guard';
 import { CartComponent } from './cart/cart.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ToursComponent } from './tours/tours.component';
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: UserRegisterComponent,
+  },
+  {
+    path: 'admin-dashboard',
+    component: DashboardComponent,
   },
   {
     path: 'authectication',

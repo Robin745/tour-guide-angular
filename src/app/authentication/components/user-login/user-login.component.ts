@@ -4,6 +4,7 @@ import { LoginForm } from '../../login-form';
 import { AuthService } from '../../auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
+import { ApiServiceService } from 'src/app/services/api-service.service';
 
 @Component({
   selector: 'app-user-login',
@@ -14,7 +15,8 @@ export class UserLoginComponent {
   constructor(
     private router: Router,
     private auth: AuthService,
-    private angularFire: AngularFireAuth
+    private angularFire: AngularFireAuth,
+    private apiService: ApiServiceService
   ) {}
 
   form: LoginForm = {
@@ -22,11 +24,12 @@ export class UserLoginComponent {
     password: '',
   };
 
-  toRegister() {
+  goToRegister() {
     this.router.navigateByUrl('/register');
   }
   onSubmit() {
     this.auth.login(this.form);
+    this.getUser();
   }
   isLoading() {
     return this.auth.isLoading;
@@ -43,4 +46,18 @@ export class UserLoginComponent {
         alert('not-success');
       });
   };
+  getUser() {
+    this.apiService.findUser(this.form).subscribe(
+      (data) => {
+        console.log(data);
+        if (data.code == '200') {
+          localStorage.setItem('user-role', JSON.stringify(data));
+        } else {
+        }
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
 }
