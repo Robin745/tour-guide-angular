@@ -22,6 +22,12 @@ export class ApiServiceService {
       userListRequest
     );
   }
+  getTours(toursListRequest: any): Observable<any> {
+    return this.httpClient.get<any>(
+      'http://localhost:4000/tours',
+      toursListRequest
+    );
+  }
   setTours(addToursRequest: ToursData): Observable<any> {
     return this.httpClient.post<any>(
       `http://localhost:4000/tours/add-tours`,

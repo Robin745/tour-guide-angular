@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Tour } from '../tour.data';
+import { Router } from '@angular/router';
+import { ToursData } from 'src/app/dashboard/tours-data';
 
 @Component({
   selector: 'app-tour',
@@ -7,5 +8,9 @@ import { Tour } from '../tour.data';
   styleUrls: ['./tour.component.css'],
 })
 export class TourComponent {
-  @Input() data: Tour = {} as Tour;
+  constructor(private router: Router) {}
+  @Input() data: ToursData = {} as ToursData;
+  viewDetails(oid: string) {
+    this.router.navigate(['/details/', oid]);
+  }
 }

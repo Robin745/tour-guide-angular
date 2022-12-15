@@ -1,6 +1,7 @@
 export interface ToursData {
+  oid: string;
   title: string;
-  image: string;
+  img: string;
   price: any;
   description: string;
 }

@@ -11,6 +11,8 @@ import { firebaseConfig } from './firebase.config';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, CartComponent],
@@ -21,6 +23,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     AuthenticationModule,
     DashboardModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: firebaseConfig }],
   bootstrap: [AppComponent],

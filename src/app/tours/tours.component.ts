@@ -1,19 +1,33 @@
-import { Component } from '@angular/core';
-import { Tour } from './tour.data';
-import { ToursService } from './tours.service';
+import { Component, OnInit } from '@angular/core';
+import { ToursData } from '../dashboard/tours-data';
+import { ApiServiceService } from '../services/api-service.service';
 
 @Component({
   selector: 'app-tours',
   templateUrl: './tours.component.html',
   styleUrls: ['./tours.component.css'],
 })
-export class ToursComponent {
-  constructor(private tourData: ToursService) {
-    this.data = this.tourData.getTourData();
+export class ToursComponent implements OnInit {
+  constructor(private toursData: ApiServiceService) {}
+  ngOnInit(): void {
+    this.getToursList();
+  }
+  tours: any[] = [];
+  getToursList() {
+    this.toursData.getTours('').subscribe(
+      (data) => {
+        if ((data.code = '200')) {
+          this.tours = data.toursData;
+          console.log(this.tours);
+        }
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 
-  data: Tour[] = [];
   getData() {
-    console.log(this.data);
+    console.log(this.tours);
   }
 }

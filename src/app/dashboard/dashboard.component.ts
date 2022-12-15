@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../services/api-service.service';
-import { Tour } from '../tours/tour.data';
+import { ToastrService } from 'ngx-toastr';
 import { ToursData } from './tours-data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,18 +10,21 @@ import { ToursData } from './tours-data';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private apiService: ApiServiceService) {}
+  constructor(
+    private apiService: ApiServiceService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
-    this.getUserList();
+    this.getToursList();
   }
-
-  users: any[] = [];
-  getUserList() {
-    this.apiService.getUsers('').subscribe(
+  tours: any[] = [];
+  getToursList() {
+    this.apiService.getTours('').subscribe(
       (data) => {
         if ((data.code = '200')) {
-          this.users = data.userData;
-          console.log(this.users);
+          this.tours = data.toursData;
+          console.log(this.tours);
         }
       },
       (error: any) => {
@@ -29,18 +33,24 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  tours: ToursData = {
+  tour: ToursData = {
+    oid: '',
     title: '',
-    image: '',
+    img: '',
     price: '',
     description: '',
   };
-  setToursData() {
-    console.log(this.tours);
-    this.apiService.setTours(this.tours).subscribe(
+  setTourData() {
+    console.log(this.tour);
+    this.apiService.setTours(this.tour).subscribe(
       (data) => {
-        if ((data.code = '200')) {
-          console.log(data);
+        if (data) {
+          if (data.status === false) {
+            this.toastr.error(data.message);
+          } else {
+            this.toastr.success(data.message);
+            this.router.navigateByUrl('/');
+          }
         }
       },
       (error: any) => {
