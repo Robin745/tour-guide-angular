@@ -1,4 +1,5 @@
-export interface ToursData {
+export interface TourData {
+  oid: string;
   title: string;
   img: string;
   price: any;

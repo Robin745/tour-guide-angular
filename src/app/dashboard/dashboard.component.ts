@@ -3,6 +3,7 @@ import { ApiServiceService } from '../services/api-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { ToursData } from './tours-data';
 import { Router } from '@angular/router';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getToursList();
   }
+  icon1 = faPenToSquare;
+  icon2 = faTrash;
   tours: any[] = [];
   getToursList() {
     this.apiService.getTours('').subscribe(
@@ -34,7 +37,6 @@ export class DashboardComponent implements OnInit {
   }
 
   tour: ToursData = {
-    oid: '',
     title: '',
     img: '',
     price: '',
@@ -57,5 +59,9 @@ export class DashboardComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  deleteTour(oid: string) {
+    console.log(oid);
   }
 }

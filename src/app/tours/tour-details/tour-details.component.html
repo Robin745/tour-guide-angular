@@ -1,17 +1,24 @@
-<!-- <div class="bg-white rounded-lg shadow-md">
-  <img
-    src="{{ data.img }}"
-    class="object-cover aspect-video rounded-t-md"
-    alt="img"
-  />
-  <div class="px-1">
-    <h2 class="font-semibold text-lg pt-2">{{ data.title }}</h2>
-    <p class="text-sm">{{ data.description.slice(0, 80) }}</p>
+<div>
+  <div class="bg-white flex rounded-lg shadow-md">
+    <img
+      src="{{ tour.img }}"
+      width="500px"
+      class="object-cover aspect-video rounded-l-md"
+      alt="img"
+    />
+    <div class="px-8 py-8">
+      <h2 class="font-semibold text-lg pt-2">{{ tour.title }}</h2>
+      <p class="text-sm">{{ tour.description }}</p>
+      <div class="my-2 font-semibold text-xl">
+        <h3>Budget: {{ tour.price | currency }}</h3>
+      </div>
+    </div>
   </div>
+
   <button
-    (click)="viewDetails(data.oid)"
     class="bg-cyan-600 w-full py-1 text-white mt-2 rounded-b-md hover:bg-cyan-500"
   >
     Book Now
+    <fa-icon [icon]="icon"></fa-icon>
   </button>
-</div> -->
+</div>

@@ -69,10 +69,25 @@
                   >
                     <span
                       aria-hidden="true"
-                      class="absolute inset-0 bg-green-200 rounded-full opacity-50"
+                      class="absolute inset-0 bg-green-200 hover:bg-green-500 rounded-full"
                     >
                     </span>
-                    <span class="relative"> active </span>
+                    <span class="relative">
+                      <fa-icon [icon]="icon1"></fa-icon>
+                    </span>
+                  </span>
+                  <span
+                    class="relative inline-block px-3 ml-2 py-1 font-semibold leading-tight text-green-900"
+                    (click)="deleteTour(tour.oid)"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="absolute inset-0 bg-red-200 hover:bg-red-500 rounded-full"
+                    >
+                    </span>
+                    <span class="relative">
+                      <fa-icon [icon]="icon2"></fa-icon>
+                    </span>
                   </span>
                 </td>
               </tr>

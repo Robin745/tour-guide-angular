@@ -16,6 +16,12 @@ export class ApiServiceService {
       loginRequest
     );
   }
+  findTour(toursOid: any): Observable<any> {
+    return this.httpClient.post<any>(
+      `http://localhost:4000/tours/get-by-oid`,
+      toursOid
+    );
+  }
   getUsers(userListRequest: any): Observable<any> {
     return this.httpClient.get<any>(
       'http://localhost:4000/users',
