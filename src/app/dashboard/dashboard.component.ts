@@ -21,6 +21,8 @@ export class DashboardComponent implements OnInit {
   }
   icon1 = faPenToSquare;
   icon2 = faTrash;
+
+  //storing all tours data
   tours: any[] = [];
   getToursList() {
     this.apiService.getTours('').subscribe(
@@ -36,6 +38,7 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  //structure tour data
   tour: ToursData = {
     title: '',
     img: '',
@@ -61,7 +64,37 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  //setting up remove tours
+  idRequest: any = {
+    oid: '',
+  };
   deleteTour(oid: string) {
-    console.log(oid);
+    this.idRequest.oid = oid;
+    console.log(this.idRequest);
+    this.router.navigateByUrl('/admin-dashboard');
+
+    this.apiService.removeTour(this.idRequest).subscribe(
+      (data) => {
+        if (data) {
+          if (data.status === false) {
+          } else {
+            this.tour = data;
+            this.getToursList();
+          }
+        } else {
+        }
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  //setting up updating tours
+
+  updateTour(oid: string) {
+    this.idRequest.oid = oid;
+    console.log(this.idRequest);
+    this.router.navigate(['/update-tour/', oid]);
   }
 }

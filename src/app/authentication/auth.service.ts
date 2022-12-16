@@ -66,6 +66,9 @@ export class AuthService {
 
   //log out function
   signOut() {
+    localStorage.removeItem('user');
+    this.isLoggedIn = false;
+
     const auth = getAuth();
     signOut(auth)
       .then(() => {

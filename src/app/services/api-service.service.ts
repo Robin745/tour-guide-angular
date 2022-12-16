@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginForm } from '../authentication/login-form';
+import { RegisterForm } from '../authentication/register-form';
 import { ToursData } from '../dashboard/tours-data';
 
 @Injectable({
@@ -38,6 +39,24 @@ export class ApiServiceService {
     return this.httpClient.post<any>(
       `http://localhost:4000/tours/add-tours`,
       addToursRequest
+    );
+  }
+  removeTour(tourOid: any): Observable<any> {
+    return this.httpClient.post<any>(
+      `http://localhost:4000/tours/remove`,
+      tourOid
+    );
+  }
+  updateTour(updateToursRequest: any): Observable<any> {
+    return this.httpClient.post<any>(
+      `http://localhost:4000/tours/update-tour`,
+      updateToursRequest
+    );
+  }
+  addUser(addUserRequest: any): Observable<any> {
+    return this.httpClient.post<any>(
+      `http://localhost:4000/users/add`,
+      addUserRequest
     );
   }
 }

@@ -1,8 +1,10 @@
-<div class="flex justify-between px-8 bg-emerald-700 text-gray-100">
+<div
+  class="flex flex-col md:flex-row justify-between items-center px-8 bg-emerald-700 text-gray-100"
+>
   <a routerLink="/" class="py-3 px-3 font-semibold hover:bg-emerald-800"
     >WITH MOSHIUR</a
   >
-  <div class="flex">
+  <div class="flex flex-col md:flex-row">
     <a
       routerLink="/"
       class="py-3 px-3 font-semibold hover:bg-emerald-800 hover:text-white"
@@ -43,7 +45,7 @@
       >
       <a
         class="py-3 px-3 cursor-pointer font-semibold font-serif text-amber-600 hover:bg-emerald-800 hover:text-rose-500"
-        >{{ userData?.displayName }}</a
+        >{{ userData?.name }}</a
       >
       <a
         (click)="SignOut()"

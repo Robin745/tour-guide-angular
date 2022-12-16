@@ -28,7 +28,7 @@ export class UserLoginComponent {
     this.router.navigateByUrl('/register');
   }
   onSubmit() {
-    this.auth.login(this.form);
+    // this.auth.login(this.form);
     this.getUser();
   }
   isLoading() {
@@ -47,12 +47,17 @@ export class UserLoginComponent {
       });
   };
   getUser() {
+    this.auth.isLoading = true;
     this.apiService.findUser(this.form).subscribe(
       (data) => {
-        console.log(data);
-        if (data.code == '200') {
-          localStorage.setItem('user-role', JSON.stringify(data));
+        if (data.status === false) {
+          console.log(data);
         } else {
+          localStorage.setItem('user', JSON.stringify(data));
+          this.auth.isLoggedIn = true;
+          this.auth.isLoading = false;
+          this.router.navigateByUrl('/');
+          console.log(data);
         }
       },
       (error: any) => {

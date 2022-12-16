@@ -17,11 +17,13 @@ export class TourDetailsComponent implements OnInit {
     this.findTour();
   }
   icon = faCartShopping;
-  tour: any = {};
+
   idRequest: any = {
     oid: this._route.snapshot.params['oid'],
   };
 
+  //find tour by oid and store in variable
+  tour: any = {};
   findTour() {
     console.log(this.idRequest);
     this.apiService.findTour(this.idRequest).subscribe(

@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   jsonData: any;
   data: any;
   ngOnInit(): void {
-    initializeApp(firebaseConfig);
+    // initializeApp(firebaseConfig);
     this.jsonData = localStorage.getItem('user');
     this.data = JSON.parse(this.jsonData);
     console.log(this.data);

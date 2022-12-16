@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../authentication/auth.service';
-import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +7,9 @@ import { getAuth } from 'firebase/auth';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private authentication: AuthService) {}
+  constructor(private authentication: AuthService) {
+    this.getUserData();
+  }
 
   //created onOnInit to call getUserData funtion when application load.
   ngOnInit(): void {

@@ -1,0 +1,124 @@
+<div
+  class="flex flex-col max-w-3xl mx-auto px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10"
+>
+  <div
+    class="self-center mb-4 text-xl font-light text-gray-800 sm:text-2xl dark:text-white"
+  >
+    Update Tour to Database
+  </div>
+  <table class="min-w-full leading-normal">
+    <thead>
+      <tr>
+        <th
+          scope="col"
+          class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+        >
+          Name
+        </th>
+        <th
+          scope="col"
+          class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+        >
+          costing
+        </th>
+        <th
+          scope="col"
+          class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+        >
+          Created at
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <a href="#" class="relative block">
+                <img
+                  alt="profil"
+                  src="{{ tour.img }}"
+                  class="mx-auto object-cover rounded-full h-10 w-10"
+                />
+              </a>
+            </div>
+            <div class="ml-3">
+              <p class="text-gray-900 whitespace-no-wrap">
+                {{ tour.title }}
+              </p>
+            </div>
+          </div>
+        </td>
+        <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+          <p class="text-gray-900 whitespace-no-wrap">
+            {{ tour.price }}
+          </p>
+        </td>
+        <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+          <p class="text-gray-900 whitespace-no-wrap">
+            {{ tour.added_at }}
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="p-6 mt-2">
+    <form action="#">
+      <div class="flex flex-col mb-2">
+        <div class="relative">
+          <input
+            type="text"
+            id="create-account-pseudo"
+            [(ngModel)]="tour.title"
+            class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            name="title"
+            placeholder="Tour Title"
+          />
+        </div>
+      </div>
+      <div class="flex gap-4 mb-2">
+        <div class="relative">
+          <input
+            type="text"
+            id="create-account-first-name"
+            [(ngModel)]="tour.img"
+            class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            name="image"
+            placeholder="Image link"
+          />
+        </div>
+        <div class="relative">
+          <input
+            type="text"
+            id="create-account-last-name"
+            [(ngModel)]="tour.price"
+            class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            name="price"
+            placeholder="Price"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col mb-2">
+        <div class="relative">
+          <input
+            type="text"
+            id="create-account-email"
+            [(ngModel)]="tour.description"
+            class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            name="desc"
+            placeholder="Add Description"
+          />
+        </div>
+      </div>
+      <div class="flex w-full my-4">
+        <button
+          type="submit"
+          (click)="setTourData()"
+          class="py-2 px-4 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+        >
+          Add to Database
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
