@@ -57,7 +57,6 @@ export class UserLoginComponent {
           this.auth.isLoggedIn = true;
           this.auth.isLoading = false;
           this.router.navigateByUrl('/');
-          console.log(data);
         }
       },
       (error: any) => {

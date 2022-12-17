@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tour-details',
@@ -11,7 +12,8 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 export class TourDetailsComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
-    private apiService: ApiServiceService
+    private apiService: ApiServiceService,
+    private toastr: ToastrService
   ) {}
   ngOnInit(): void {
     this.findTour();
@@ -34,6 +36,25 @@ export class TourDetailsComponent implements OnInit {
             this.tour = data;
           }
         } else {
+        }
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  //add to cart
+  addToCart() {
+    console.log(this.tour);
+    this.apiService.add_to_cart(this.tour).subscribe(
+      (data) => {
+        if (data) {
+          if (data.status === false) {
+            this.toastr.error(data.message);
+          } else {
+            this.toastr.success(data.message);
+          }
         }
       },
       (error: any) => {

@@ -59,4 +59,10 @@ export class ApiServiceService {
       addUserRequest
     );
   }
+  add_to_cart(addToursRequest: any): Observable<any> {
+    return this.httpClient.post<any>(
+      `http://localhost:4000/tours/add-to-cart`,
+      addToursRequest
+    );
+  }
 }

@@ -64,10 +64,12 @@ export class UpdateTourComponent implements OnInit {
       (data) => {
         if (data) {
           if (data.status === false) {
+            console.log(data);
             this.toastr.error(data.message);
           } else {
+            console.log(data);
             this.toastr.success(data.message);
-            // this.router.navigateByUrl('/');
+            this.router.navigateByUrl('/');
           }
         }
       },
