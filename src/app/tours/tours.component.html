@@ -1,6 +1,26 @@
 <div>
-  <div class="text-2xl text-center my-4 font-bold text-gray-700">
-    <h1>Visit With Me</h1>
+  <div class="">
+    <div
+      class="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' md:text-3xl lg:text-4xl font-mono font-semibold text-white z-10"
+    >
+      <h1>TRAVEL WITH MOSHIUR</h1>
+    </div>
+    <div>
+      <carousel
+        [images]="images"
+        [cellsToShow]="1"
+        [loop]="true"
+        [autoplay]="true"
+        [autoplayInterval]="2000"
+        [height]="600"
+      ></carousel>
+    </div>
+  </div>
+
+  <div
+    class="text-2xl font-mono text-center mt-10 mb-4 font-bold text-gray-700"
+  >
+    <h1>Explore With Me</h1>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     <ng-container *ngFor="let singleData of tours">

@@ -30,4 +30,12 @@ export class ToursComponent implements OnInit {
   getData() {
     console.log(this.tours);
   }
+  images = [
+    { path: '../../assets/images/carousel5.jpg' },
+    { path: '../../assets/images/carousel2.jpg' },
+    { path: '../../assets/images/carousel3.jpg' },
+    { path: '../../assets/images/carousel4.jpg' },
+    { path: '../../assets/images/carousel5.jpg' },
+    { path: '../../assets/images/carousel1.jpg' },
+  ];
 }

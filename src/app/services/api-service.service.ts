@@ -65,4 +65,16 @@ export class ApiServiceService {
       addToursRequest
     );
   }
+  getCart(cartListRequest: any): Observable<any> {
+    return this.httpClient.get<any>(
+      'http://localhost:4000/cart-items',
+      cartListRequest
+    );
+  }
+  removeCartItem(itemOid: any): Observable<any> {
+    return this.httpClient.post<any>(
+      `http://localhost:4000/cart/remove`,
+      itemOid
+    );
+  }
 }

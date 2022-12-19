@@ -7,6 +7,7 @@ import { GuardGuard } from './authentication/guard.guard';
 import { CartComponent } from './cart/cart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UpdateTourComponent } from './dashboard/update-tour/update-tour.component';
+import { CheckoutComponent } from './tours/checkout/checkout.component';
 import { TourDetailsComponent } from './tours/tour-details/tour-details.component';
 import { ToursComponent } from './tours/tours.component';
 
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'update-tour/:oid',
     component: UpdateTourComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
   },
   {
     path: 'authectication',

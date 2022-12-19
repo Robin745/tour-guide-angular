@@ -6,81 +6,96 @@
   >
     Your Cart
   </div>
-  <table class="min-w-full leading-normal">
-    <thead>
-      <tr>
-        <th
-          scope="col"
-          class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
-        >
-          Name
-        </th>
-        <th
-          scope="col"
-          class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
-        >
-          costing
-        </th>
-        <th
-          scope="col"
-          class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
-        >
-          Added at
-        </th>
-        <th
-          scope="col"
-          class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
-        >
-          Remove
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-          <div class="flex items-center">
-            <div class="flex-shrink-0">
-              <a href="#" class="relative block">
-                <img
-                  alt="profil"
-                  src="{{ tour.img }}"
-                  class="mx-auto object-cover rounded-full h-10 w-10"
-                />
-              </a>
-            </div>
-            <div class="ml-3">
-              <p class="text-gray-900 whitespace-no-wrap">
-                {{ tour.title }}
-              </p>
-            </div>
-          </div>
-        </td>
-        <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-          <p class="text-gray-900 whitespace-no-wrap">
-            {{ tour.price }}
-          </p>
-        </td>
-        <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-          <p class="text-gray-900 whitespace-no-wrap">
-            {{ oid }}
-          </p>
-        </td>
-        <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-          <span
-            class="relative inline-block px-3 ml-2 py-1 font-semibold leading-tight text-green-900"
-            (click)="deleteFromCart(oid)"
-          >
-            <span
-              aria-hidden="true"
-              class="absolute inset-0 bg-red-200 hover:bg-red-500 rounded-full"
+  <div class="overflow-auto text-center">
+    <ng-container *ngIf="carts.length == 0">
+      <h1 class="text-center text-2xl">Cart is Empty</h1>
+    </ng-container>
+    <ng-container *ngIf="carts.length">
+      <table class="min-w-[750px] leading-normal overflow-auto">
+        <thead>
+          <tr>
+            <th
+              scope="col"
+              class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
             >
-            </span>
-            <span class="relative">
-              <fa-icon [icon]="icon"></fa-icon>
-            </span>
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+              Name
+            </th>
+            <th
+              scope="col"
+              class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+            >
+              costing
+            </th>
+            <th
+              scope="col"
+              class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+            >
+              Added at
+            </th>
+            <th
+              scope="col"
+              class="px-5 py-3 text-sm font-semibold text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+            >
+              Remove
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let cart of carts">
+            <tr>
+              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <a href="#" class="relative block">
+                      <img
+                        alt="profil"
+                        src="{{ cart.img }}"
+                        class="mx-auto object-cover rounded-full h-10 w-10"
+                      />
+                    </a>
+                  </div>
+                  <div class="ml-3">
+                    <p class="text-gray-900 whitespace-no-wrap">
+                      {{ cart.title }}
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{ cart.price }}
+                </p>
+              </td>
+              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{ cart.added_at }}
+                </p>
+              </td>
+              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                <span
+                  class="relative inline-block px-3 ml-2 py-1 font-semibold leading-tight text-green-900"
+                  (click)="deleteFromCart(cart.oid)"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="absolute inset-0 bg-red-200 hover:bg-red-500 rounded-full"
+                  >
+                  </span>
+                  <span class="relative">
+                    <fa-icon [icon]="icon"></fa-icon>
+                  </span>
+                </span>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      <button
+        (click)="toCheckout()"
+        class="w-36 lg:w-80 bg-green-900 hover:bg-gray-500 text-white hover:text-gray-200 text-sm py-2 my-8 rounded-md"
+      >
+        <p>Proceed To Checkout</p>
+      </button>
+    </ng-container>
+  </div>
 </div>

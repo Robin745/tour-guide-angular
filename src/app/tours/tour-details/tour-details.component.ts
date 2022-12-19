@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,8 @@ export class TourDetailsComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private apiService: ApiServiceService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.findTour();
@@ -61,5 +62,6 @@ export class TourDetailsComponent implements OnInit {
         console.log(error);
       }
     );
+    this.router.navigateByUrl('/cart');
   }
 }

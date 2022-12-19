@@ -69,7 +69,7 @@ export class UpdateTourComponent implements OnInit {
           } else {
             console.log(data);
             this.toastr.success(data.message);
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('/admin-dashboard');
           }
         }
       },
