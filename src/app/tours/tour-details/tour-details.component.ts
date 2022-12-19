@@ -55,6 +55,7 @@ export class TourDetailsComponent implements OnInit {
             this.toastr.error(data.message);
           } else {
             this.toastr.success(data.message);
+            this.router.navigateByUrl('/cart');
           }
         }
       },
@@ -62,6 +63,5 @@ export class TourDetailsComponent implements OnInit {
         console.log(error);
       }
     );
-    this.router.navigateByUrl('/cart');
   }
 }

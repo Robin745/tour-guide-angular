@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  constructor(private apiService: ApiServiceService, private router: Router) {}
+  constructor(private apiService: ApiServiceService, private router: Router) {
+    this.getCartsList();
+  }
   ngOnInit(): void {
     this.getCartsList();
   }
