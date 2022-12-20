@@ -27,9 +27,10 @@ export class UserLoginComponent {
   goToRegister() {
     this.router.navigateByUrl('/register');
   }
+  error: string = '';
   onSubmit() {
     // this.auth.login(this.form);
-    this.getUser();
+    this.setUser();
   }
   isLoading() {
     return this.auth.isLoading;
@@ -41,18 +42,23 @@ export class UserLoginComponent {
         localStorage.setItem('user', JSON.stringify(res.user));
         this.auth.isLoggedIn = true;
         this.router.navigate(['']);
+        window.location.reload();
       })
       .catch(() => {
         alert('not-success');
       });
   };
-  getUser() {
+  setUser() {
     this.auth.isLoading = true;
     this.apiService.findUser(this.form).subscribe(
       (data) => {
-        if (data.status === false) {
-          console.log(data);
+        if (data.code == 201) {
+          this.error = 'Wrong Email or Password';
+          console.log(this.error.length);
+          this.auth.isLoading = false;
+          return;
         } else {
+          console.log(this.error.length);
           localStorage.setItem('user', JSON.stringify(data));
           this.auth.isLoggedIn = true;
           this.auth.isLoading = false;

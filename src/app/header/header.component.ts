@@ -7,9 +7,7 @@ import { AuthService } from '../authentication/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private authentication: AuthService) {
-    this.getUserData();
-  }
+  constructor(private authentication: AuthService) {}
 
   //created onOnInit to call getUserData funtion when application load.
   ngOnInit(): void {
@@ -20,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   getUserData() {
     this.userData = this.authentication.getUser();
+    console.log(this.userData);
   }
 
   isAuthenticated() {

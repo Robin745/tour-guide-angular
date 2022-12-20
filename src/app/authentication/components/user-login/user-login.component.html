@@ -44,6 +44,9 @@
       <p class="text-center text-lg text-lime-600">
         <ng-container *ngIf="isLoading()">Loading...</ng-container>
       </p>
+      <p class="text-center text-lg text-red-600">
+        <ng-container *ngIf="error.length > 0">{{ error }}</ng-container>
+      </p>
       <input
         [disabled]="myForm.form.invalid"
         type="submit"

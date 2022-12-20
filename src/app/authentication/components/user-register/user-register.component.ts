@@ -23,37 +23,43 @@ export class UserRegisterComponent {
     password: '',
     confirmPassword: '',
   };
-  addUserData() {
-    console.log(this.form);
-    this.apiService.addUser(this.form).subscribe(
-      (data) => {
-        if (data) {
-          if (data.status === false) {
-            this.toastr.error(data.message);
-            console.log(data);
-          } else {
-            this.toastr.success('Success! Now login in');
-            this.router.navigateByUrl('/login');
-            console.log(data);
-          }
-        }
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
-  }
+
   toLogin() {
     this.router.navigateByUrl('/login');
   }
   onSubmit() {
-    // this.auth.register(this.form);
-    this.addUserData();
+    this.auth.register(this.form);
+    if (this.auth.isPassMatched) {
+      return;
+    } else {
+      this.addUserData();
+    }
   }
   isPassMatched() {
     return this.auth.isPassMatched;
   }
   isLoading() {
     return this.auth.isLoading;
+  }
+
+  addUserData() {
+    console.log(this.form);
+    this.apiService.addUser(this.form).subscribe(
+      (data) => {
+        if (data.status === false) {
+          this.toastr.error(data.message);
+          this.auth.isLoading = false;
+          console.log(data);
+        } else {
+          this.toastr.success('Success! Now login in');
+          this.auth.isLoading = false;
+          this.router.navigateByUrl('/login');
+          console.log(data);
+        }
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 }

@@ -42,26 +42,27 @@ export class AuthService {
 
   //register function
   register(form: RegisterForm) {
+    this.isPassMatched = false;
     this.isLoading = true;
     if (form.password !== form.confirmPassword) {
       this.isPassMatched = true;
       this.isLoading = false;
       return;
     }
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, form.email, form.password)
-      .then((userCredential) => {
-        this.isLoggedIn = true;
-        const user = userCredential.user;
-        localStorage.setItem('user', JSON.stringify(user));
-        this.router.navigate(['']);
-      })
-      .catch((error) => {
-        this.isLoggedIn = false;
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      })
-      .finally(() => (this.isLoading = false));
+    // const auth = getAuth();
+    // createUserWithEmailAndPassword(auth, form.email, form.password)
+    //   .then((userCredential) => {
+    //     this.isLoggedIn = true;
+    //     const user = userCredential.user;
+    //     localStorage.setItem('user', JSON.stringify(user));
+    //     this.router.navigate(['']);
+    //   })
+    //   .catch((error) => {
+    //     this.isLoggedIn = false;
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //   })
+    //   .finally(() => (this.isLoading = false));
   }
 
   //log out function
